@@ -1,0 +1,23 @@
+{
+    "name" : "Hello World!",
+    "identifier" : "com.sketchapp.examples.helloworld",
+    "version" : "1.0",
+    "description" : "Example Sketch Plugin using resources from within the bundle and a library script.",
+    "authorEmail" : "developer@sketchapp.com",
+    "author" : "Bohemian Coding",
+    "commands" : [
+    {
+      "script" : "hello-world.js",
+      "handler" : "onRun",
+      "shortcut" : "",
+      "name" : "Hello World!",
+      "identifier" : "helloworld"
+    },
+    ],
+    "menu": {
+    "isRoot": true,
+    "items": [
+      "helloworld",
+    ],
+    },
+}

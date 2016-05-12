@@ -1,2 +1,5 @@
-# plugins.examples.hello-world
-Simple “Hello World” example of a Sketch Plugin
+# Hello World
+
+This example plugin for [Sketch][] demonstrates creating new layers, applying text styles, inserting bitmap images and more.
+
+[Sketch]: http://bohemiancoding.com/sketch/
