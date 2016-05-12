@@ -79,3 +79,9 @@ function onRun(context) {
   // so that we can see where it is.
   doc.currentView.centerRect_(layer.rect())
 };
+
+// And that's it. Job done.
+//
+// Obviously this is only the tip of the iceberg. Check out some of the other examples to see what else can be done.
+//
+// If you have questions, comments or any feedback, ping us at <developers@sketchapp.com>!
