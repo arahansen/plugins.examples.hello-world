@@ -1,29 +1,81 @@
-@import "library.js";
+// Hello World, by Sam Deane — Source code available at [GitHub](https://github.com/BohemianCoding/plugins.examples.hello-world)
+//
+// This is an extremely simple plugin example, which illustrates how to add a menu command to the Plugins menu
+// and execute some code when it is selected.
 
-var onRun = function(context) {
-  // Context is a dictionary containing a reference to the document,
+//
+// ## Layout
+//
+// The first thing to do when making a plugin is to setup the folder structure, which should
+// look something like this:
+//
+// ```
+//    MyPlugin.sketchplugin/
+//      Contents/
+//        Sketch/
+//          manifest.json
+//          script.js
+// ```
+//
+// ## Manifest
+//
+// The plugin needs a manifest.json file. This tells Sketch which menu items your plugin supplies,
+// as well as giving some general information about the plugin such as its name, author, and so on.
+//
+// A single plugin can supply multiple menu items, and each one can execute different code,
+// or they can all share code. In our case though, we just have one command.
+//
+//  ```json
+// {
+//     "name" : "Hello World!",
+//     "identifier" : "com.sketchapp.examples.helloworld",
+//     "version" : "1.0",
+//     "description" : "Pretty much the smallest example Sketch Plugin you could have.",
+//     "authorEmail" : "sam@sketchapp.com",
+//     "author" : "Sam Deane",
+//     "commands" : [
+//     {
+//       "script" : "hello-world.js",
+//       "handler" : "onRun",
+//       "shortcut" : "",
+//       "name" : "Hello World!",
+//       "identifier" : "helloworld"
+//     }
+//   ]
+// }
+// ```
+
+// ## Code
+// ### Defining The Run Handler
+//
+// In the manifest, we told Sketch that every time the "Hello World!" menu is selected,
+// we want to execute  a javascript handler called `onRun`.
+//
+// So now we need to put some code into the `hello-world.js` file to implement that command.
+
+function onRun(context) {
+
+  // We are passed a context variable when we're run.
+  // This is a dictionary containing a reference to the document,
   // the current selection, the plugin, curren URL and more.
 
-  var doc = context.document;            // the current document (MSDocument)
-  var plugin = context.plugin;          // the plugin (MSPluginBundle)
-  var page = [doc currentPage];         // the current page (MSPage)
+  // One of the things that the context contains is the current document,
+  // so let's fetch that.
+  var doc = context.document;
 
-  // create a new group to contain the new layers (MSLayerGroup)
-  var group = SketchLib.addLayerGroup(page, {"name": [plugin name] });
+  // From the document, we can fetch the current page that the user is looking at.
+  var page = [doc currentPage];
 
-  // create an image layer using a resource from the plugin bundle's Contents/Resouces folder
-  var imageLayer = SketchLib.addImageLayer(group, {"name": "World", "url": [plugin urlForResourceNamed:"World.pdf"]})
-  // center on the canvas
-  SketchLib.util.centerLayer(imageLayer);
+  // We can now use this page to create a new text layer...
+  var layer = page.addLayerOfType("text")
 
-  // create a text layer using the plugin's name
-  var textLayer = SketchLib.addTextLayer(group, {"text": [plugin name], "fontSize": 96});
-  // center on the canvas
-  SketchLib.util.centerLayer(textLayer);
+  // ...give it a large font...
+  layer.font = NSFont.systemFontOfSize_(36.0)
 
-  // resize the group to contain its children
-  [group resizeRoot:true];
+  // And set its text to a traditional value...
+  layer.stringValue = "Hello World!"
 
-  // center the view on our new group
-  [[doc currentView] centerRect:[group rect]];
+  // Finally, lets center the view on our new layer
+  // so that we can see where it is.
+  doc.currentView.centerRect_(layer.rect())
 };

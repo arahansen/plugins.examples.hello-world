@@ -2,9 +2,9 @@
     "name" : "Hello World!",
     "identifier" : "com.sketchapp.examples.helloworld",
     "version" : "1.0",
-    "description" : "Example Sketch Plugin using resources from within the bundle and a library script.",
-    "authorEmail" : "developer@sketchapp.com",
-    "author" : "Bohemian Coding",
+    "description" : "Pretty much the smallest example Sketch Plugin you could have.",
+    "authorEmail" : "sam@sketchapp.com",
+    "author" : "Sam Deane",
     "commands" : [
     {
       "script" : "hello-world.js",
@@ -12,12 +12,6 @@
       "shortcut" : "",
       "name" : "Hello World!",
       "identifier" : "helloworld"
-    },
-    ],
-    "menu": {
-    "isRoot": true,
-    "items": [
-      "helloworld",
-    ],
-    },
+    }
+  ]
 }
