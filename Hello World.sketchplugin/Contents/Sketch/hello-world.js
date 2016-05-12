@@ -19,7 +19,7 @@
 //
 // ## Manifest
 //
-// The plugin needs a manifest.json file. This tells Sketch which menu items your plugin supplies,
+// The plugin needs a `manifest.json` file. This tells Sketch which menu items your plugin supplies,
 // as well as giving some general information about the plugin such as its name, author, and so on.
 //
 // A single plugin can supply multiple menu items, and each one can execute different code,
