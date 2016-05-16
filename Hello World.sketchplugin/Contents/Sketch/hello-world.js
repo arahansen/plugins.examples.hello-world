@@ -83,7 +83,7 @@ function onRun(context) {
 
   // Finally, lets center the view on our new layer
   // so that we can see where it is.
-  doc.currentView.centerRect_(layer.rect())
+  doc.currentView().centerRect_(layer.rect())
 };
 
 // And that's it. Job done.
