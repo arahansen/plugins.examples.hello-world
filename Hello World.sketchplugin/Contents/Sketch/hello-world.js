@@ -66,14 +66,20 @@ function onRun(context) {
   // From the document, we can fetch the current page that the user is looking at.
   var page = [doc currentPage];
 
-  // We can now use this page to create a new text layer...
-  var layer = page.addLayerOfType("text")
+  // Now let's create a new text layer...
 
+  var layer = MSTextLayer.alloc().initWithFrame_(NSMakeRect(0, 0, 100, 100))
   // ...give it a large font...
   layer.font = NSFont.systemFontOfSize_(36.0)
 
-  // And set its text to a traditional value...
+  // ...set its text to a traditional value...
   layer.stringValue = "Hello World!"
+
+  // ...resize it so that the text just fits...
+  layer.adjustFrameToFit()
+
+  // ...and add it to the page
+  page.addLayers_([layer])
 
   // Finally, lets center the view on our new layer
   // so that we can see where it is.
