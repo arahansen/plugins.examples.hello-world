@@ -57,7 +57,7 @@ function onRun(context) {
 
   // We are passed a context variable when we're run.
   // This is a dictionary containing a reference to the document,
-  // the current selection, the plugin, curren URL and more.
+  // the current selection, the plugin, current URL and more.
 
   // One of the things that the context contains is the current document,
   // so let's fetch that.
