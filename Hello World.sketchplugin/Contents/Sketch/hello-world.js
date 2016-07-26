@@ -56,34 +56,23 @@
 function onRun(context) {
 
   // We are passed a context variable when we're run.
-  // This is a dictionary containing a reference to the document,
-  // the current selection, the plugin, current URL and more.
+  // We use this to get hold of a javascript object
+  // which we can use in turn to manipulate Sketch.
+  var sketch = context.api()
 
-  // One of the things that the context contains is the current document,
-  // so let's fetch that.
-  var doc = context.document;
+  // Next we want to extract the selected page of the selected (front-most) document
+  var document = sketch.selectedDocument
+  var page = document.selectedPage
 
-  // From the document, we can fetch the current page that the user is looking at.
-  var page = [doc currentPage];
-
-  // Now let's create a new text layer...
-
-  var layer = MSTextLayer.alloc().initWithFrame_(NSMakeRect(0, 0, 100, 100))
-  // ...give it a large font...
-  layer.font = NSFont.systemFontOfSize_(36.0)
-
-  // ...set its text to a traditional value...
-  layer.stringValue = "Hello World!"
+  // Now let's create a new text layer, using a large font, and a traditional value...
+  var layer = page.newText({alignment: NSTextAlignmentCenter, systemFontSize: 36, text:"Hello World"})
 
   // ...resize it so that the text just fits...
-  layer.adjustFrameToFit()
-
-  // ...and add it to the page
-  page.addLayers_([layer])
+  layer.resizeToFitContents()
 
   // Finally, lets center the view on our new layer
   // so that we can see where it is.
-  doc.currentView().centerRect_(layer.rect())
+  document.centerOnLayer(layer)
 };
 
 // And that's it. Job done.
